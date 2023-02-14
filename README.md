@@ -57,7 +57,7 @@ Gcoupler supports 3 distinct modules:<br/>
 
 ### Synthesizer
 
-To generate target cavity specific sythetic compounds 
+To identify the putative cavities on the protein surface with the potential to be an active or an allosteric site and perform _de novo_ drug synthesis 
 ```
 >>> import Synthesizer as sz
 ```
@@ -120,16 +120,16 @@ The output folder will contain the following files at the end of the successful 
 
 ### Authenticator
 
-To classify the synthetic compounds into binary classes based on molecular interaction
+To segregate the synthetic compounds into binary classes, based on their actual interaction at the molecular level
 ```
 import Authenticator as au
 ```
-To calculate interaction of individual synthetic compounds with the target cavity (which they are synthesized from)
+To calculate interaction (binding energy) of individual synthetic compounds with the target cavity (which they are synthesized from)
 ```
 >>> au.synthetic_interaction()
 ```
 Additional arguments:
-1. method: Statistical test to use for interaction cutoff estimation
+1. method: Statistical test to use for binding energy cutoff estimation
 
 | Parameter Name | Description |
 | -------- | -------- |
@@ -145,9 +145,14 @@ Additional arguments:
 | Density | Density distribution plot (Default) |
 | ECDF | Empirical cumulative distribution function plot |
 
-To classify synthetic compounds into binary classes of HAB & LAB
+Example
 ```
->>> cutoff = -9  #user decided interaction cutoff for synthetic compound binary classification (Default: -7)
+>>> au.synthetic_interaction(method='KS-test',p_val=0.05,plot='Density')
+```
+
+To classify synthetic compounds into binary classes of HAB & LAB based on binding energy cutoff (Default: -7)
+```
+>>> cutoff = -9  #user decided binding energy cutoff for synthetic compound binary classification 
 >>> au.synthetic_classify(cf=cutoff)
 ```
 
@@ -159,8 +164,8 @@ Additional arguments:
 
 | Arguments | Description |
 | -------- | -------- |
-| cf | User specified interaction cutoff for HABs, for which decoys will be generated(Default: -7) |
-| decoy_csv | A csv file containg two coulmns. **SMILES** column containing the compund SMILES, and **Annotation** column containing it's annotation HAB(output from previous function) or Decoy |
+| cf | User specified binding energy cutoff for HABs, for which decoys will be generated (Default: -7) |
+| decoy_csv | A csv file containg two coulmns. **SMILES** column containing the compound SMILES, and **Annotation** column containing it's class information HAB (output from previous function) or Decoy |
 
 ##### Ouput folder
 The output folder will contain the following files at the end of the successful execution of Authenticator module
@@ -169,11 +174,111 @@ The output folder will contain the following files at the end of the successful 
 | Progress.st | Status file containing Gcoupler progress |
 | Synth.csv | CSV file containing SMILES of the synthetic compounds  |
 | PDBQT files | Docking ready synthetic compounds |
-| Synth_BE.csv | CSV file containing SMILES and interaction data of the synthetic compounds |
-| Labeled_cmps.csv | CSV file containing SMILES and group data (HAB/LAB) of the synthetic compounds |
-| PDF files | Distribution plots at each qualified balanced cutoff, containing information about the statistical test performed and respective p-value |
+| Synth_BE.csv | CSV file containing SMILES and binding energy data of the synthetic compounds |
+| Labeled_cmps.csv | CSV file containing SMILES and class information (HAB/LAB) of the synthetic compounds |
+| PDF files | Distribution plots at each qualified cutoff with balanced classes, containing information about the statistical test performed and respective p-value |
 
 
 ### Generator
 
-To classify the synthetic
+To build Graph-Neural Network based classification models for large-scale screening of the user query compounds 
+```
+>>> import Generator as ge
+```
+To pre-process the binary data (HAB & LAB), and test against four base models
+1. GCM: GraphConv Model
+2. AFP: Attentive FP
+3. GCN: Graph Convolution Network
+4. GAT: Graph Attention Network
+```
+>>> ge.multi_model_test()
+```
+##### Optional 
+User can provide pre-compiled binary data for multi model testing (limited to this function only)
+```
+>>> data='/home/username/cmp.csv' #cmp.csv file containing "SMILES" & "Status" column with SMILES of compounds and 1/0 as class information respectively 
+>>> ge.multi_model_test(fi=data)
+```
+
+save the base model scoring matrices as Pandas dataframe
+```
+>>> matrices = ge.multi_model_test(fi=data)
+```
+To select the best-performing model for the hyperparameter tuning (HPT) with K-Fold cross-validation 
+```
+>>> ge.MD_kfold(mdl='GCN',k=5)
+```
+Additional arguments:
+
+| Arguments | Description |
+| -------- | -------- |
+| k | Fold value (int) for model cross validation on the best hyperparameters (Default: 3) |
+| params | A dictionary with parameter names as key and respective grid as value |
+
+User can either opt for Gcoupler predefined hyperparameter grid for the selected model of interest, for HPT
+
+OR
+
+User can also specify the range of each hyperparameter for the selected model of interest, for HPT
+
+Modifiable Hyperparameter list:
+| Model | Parameters | Data type |
+| -------- | -------- | -------- |
+| GCM | number_atom_features | list of int, e.g., [50,100,150,200] |
+|  | graph_conv_layers | list of lists of layers, e.g., [[32,32],[64,64],[128,128]] |
+|  | dropout | list of floats, e.g., [0, 0.1, 0.5] |
+|  | batch_size | list of int, e.g., [10,20,30,40]  |
+|  | dense_layer_size | list of int, e.g., [120,140,160,180,200]  |
+| AFP | num_layers | list of int, e.g., [10,20,30,40] |
+|  | num_timesteps | list of int, e.g., [5,10,15,20] |
+|  | graph_feat_size | list of int, e.g., [125,150,175,200] |
+|  | dropout | list of floats, e.g., [0, 0.1, 0.5] |
+| GCN | batch_size | list of int, e.g., [10,15,20,25]  |
+|  | graph_conv_layers | list of lists of layers, e.g., [[32,32],[64,64],[128,128]] |
+|  | predictor_hidden_feats | list of int, e.g., [100,150,200,250,300] |
+|  | learning_rate | list of float, e.g., [0.01,0.1,1.0] |
+|  | predictor_droput | list of int, e.g., [0,1] |
+| GAT | alpha | list of floats, e.g., [0,0.2,0.4] |
+|  | dropout | list of floats, e.g., [0, 0.1, 0.5] |
+|  | n_attention_heads | list of int, e.g., [5,10,15,20] |
+|  | number_atom_features | list of int, e.g., [10,20,30,40,50] |
+
+##### Optional
+User can opt for hyperparameter tuning of any selected model, without K-Fold cross-validation (For multiple time testing)
+```
+>>> ge.model_hpt(mdl='GCN')
+```
+Warning!! The above function does not create model for large-scale screeing
+
+##### Ouput folder
+The output folder will contain the following files at the end of the successful execution of Generator module
+| Files | Description |
+| -------- | -------- |
+| Progress.st | Status file containing Gcoupler progress |
+| Synth.csv | CSV file containing SMILES of the synthetic compounds  |
+| PDBQT files | Docking ready synthetic compounds |
+| Synth_BE.csv | CSV file containing SMILES and binding energy data of the synthetic compounds |
+| Labeled_cmps.csv | CSV file containing SMILES and class information (HAB/LAB) of the synthetic compounds |
+| PDF files | Distribution plots at each qualified cutoff with balanced classes, containing information about the statistical test performed and respective p-value |
+| Model Folders | Folders containing base model & K-Fold cross-validation checkpoints |
+| PDF files | Heatmap of base model parameters, Boxplot of K-Fold cross-validation, Base model Test/Train AUC plots |
+| model_100 | Folder 100% synthetic data trained Graph-Neural Network model for **Large-scale screening** |
+
+
+## Large-scale screening
+To predict binding probability for individual query compounds 
+```
+>>> import Generator as ge
+```
+Prepare a list of canonical SMILES (OpenBabel generated) strings of the qurey compounds
+```
+>>> smiles =  ['ClCC=C', 'C=CCOC(=O)CC(C)C', ...]
+```
+Run predictions on a pre-trained Graph-Neural Network model (Model selected for K-Fold cross on last run)
+```
+>>> ge.MD_pred(smiles)
+```
+Save the result as Pandas dataframe
+```
+>>> result = ge.MD_pred(smiles)
+```
