@@ -109,7 +109,7 @@ OR
 >>> sz.cavity_detect(Residue_list.tsv, ligand_count=lcount)
 ```
 
-##### Ouput folder
+##### Output folder
 The output folder will contain the following files at the end of the successful execution of Synthesizer module
 | Files | Description |
 | -------- | -------- |
@@ -167,7 +167,7 @@ Additional arguments:
 | cf | User specified binding energy cutoff for HABs, for which decoys will be generated (Default: -7) |
 | decoy_csv | A csv file containg two coulmns. **SMILES** column containing the compound SMILES, and **Annotation** column containing it's class information HAB (output from previous function) or Decoy |
 
-##### Ouput folder
+##### Output folder
 The output folder will contain the following files at the end of the successful execution of Authenticator module
 | Files | Description |
 | -------- | -------- |
@@ -197,7 +197,7 @@ User can provide pre-compiled binary data for multi model testing (limited to th
 >>> ge.multi_model_test(fi=data)
 ```
 
-save the base model scoring matrices as Pandas dataframe
+Save the base model scoring metrics as Pandas dataframe
 ```
 >>> matrices = ge.multi_model_test(fi=data)
 ```
@@ -212,11 +212,11 @@ Additional arguments:
 | k | Fold value (int) for model cross validation on the best hyperparameters (Default: 3) |
 | params | A dictionary with parameter names as key and respective grid as value |
 
-User can either opt for Gcoupler predefined hyperparameter grid for the selected model of interest, for HPT
+User can either opt for Gcoupler predefined hyperparameter grid for the selected model of interest for HPT
 
 OR
 
-User can also specify the range of each hyperparameter for the selected model of interest, for HPT
+User can also specify the range of each hyperparameter for the selected model of interest for HPT
 
 Modifiable Hyperparameter list:
 | Model | Parameters | Data type |
@@ -241,20 +241,20 @@ Modifiable Hyperparameter list:
 |  | number_atom_features | list of int, e.g., [10,20,30,40,50] |
 
 ##### Optional
-User can opt for hyperparameter tuning of any selected model, without K-Fold cross-validation (For multiple time testing)
+User can opt for hyperparameter tuning of any selected model, without K-Fold cross-validation (Only for testing diffrent hyperparameter grid range)
 ```
->>> ge.model_hpt(mdl='GCN')
+>>> ge.model_hpt(mdl='GCN', params={dictionary}) #dictionary=['parameter name':[parameter grid]]
 ```
-Warning!! The above function does not create model for large-scale screeing
+Warning!! The above function does not create model for large-scale screening
 
-##### Ouput folder
+##### Output folder
 The output folder will contain the following files at the end of the successful execution of Generator module
 | Files | Description |
 | -------- | -------- |
-| PDF files | Heatmap of base model parameters, Boxplot of K-Fold cross-validation, Base model Test/Train AUC plots |
+| PDF files | Heatmap of base model performance metrics, Boxplot of K-Fold cross-validation, Base model Test/Train AUC plots |
 | Model Folders | Folders containing base model checkpoints |
 | KFoldCV | Folder containing  K subfolders with model checkpoints for each fold |
-| model_100 | Folder 100% synthetic data trained Graph-Neural Network model for **Large-scale screening** |
+| model_100 | Folder containing Graph-Neural Network model checkpoints trained on 100% synthetic data for **Large-scale screening** |
 
 
 ## Large-scale screening
