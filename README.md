@@ -109,11 +109,13 @@ OR
 >>> sz.cavity_detect(Residue_list.tsv, ligand_count=lcount)
 ```
 
+##### Ouput folder
 The output folder will contain the following files at the end of the successful execution of Synthesizer module
- 1. Progress.st &emsp; #Status file containing Gcoupler progress
- 2. Synth.csv &emsp; #CSV file containing SMILES of the synthetic compounds 
- 3. PDBQT file &emsp; #Docking ready synthetic compounds
-
+| Files | Description |
+| -------- | -------- |
+| Progress.st | Status file containing Gcoupler progress |
+| Synth.csv | CSV file containing SMILES of the synthetic compounds  |
+| PDBQT files | Docking ready synthetic compounds |
 
 
 ### Authenticator
@@ -160,15 +162,16 @@ Additional arguments:
 | cf | User specified interaction cutoff for HABs, for which decoys will be generated(Default: -7) |
 | decoy_csv | A csv file containg two coulmns. **SMILES** column containing the compund SMILES, and **Annotation** column containing it's annotation HAB(output from previous function) or Decoy |
 
+##### Ouput folder
 The output folder will contain the following files at the end of the successful execution of Authenticator module
- 1. Progress.st &emsp; #Status file containing Gcoupler progress
- 2. Synth.csv &emsp; #CSV file containing SMILES of the synthetic compounds 
- 3. PDBQT file &emsp; #Docking ready synthetic compounds
- 4. Synth_BE.csv &emsp; #CSV file containing SMILES and interaction data of the synthetic compounds
- 5. Labeled_cmps.csv &emsp; #CSV file containing SMILES and group data (HAB/LAB) of the synthetic compounds
- 6. pdf file &emsp; #Distribution plots at each qualified balanced cutoff, containing information about the statistical test performed and respective p-value
-
-
+| Files | Description |
+| -------- | -------- |
+| Progress.st | Status file containing Gcoupler progress |
+| Synth.csv | CSV file containing SMILES of the synthetic compounds  |
+| PDBQT files | Docking ready synthetic compounds |
+| Synth_BE.csv | CSV file containing SMILES and interaction data of the synthetic compounds |
+| Labeled_cmps.csv | CSV file containing SMILES and group data (HAB/LAB) of the synthetic compounds |
+| PDF files | Distribution plots at each qualified balanced cutoff, containing information about the statistical test performed and respective p-value |
 
 
 ### Generator
