@@ -11,9 +11,13 @@ Gcoupler, which leverages an integrative approach combining de novo ligand desig
 
 The only strong dependency for this resource is [**RDKit**](https://www.rdkit.org/) and [**DeepChem**](https://github.com/deepchem/deepchem) which can be installed in a local [Conda](https://conda.io/) environment.
 
-A clone of the conda environment is 
+
+Click here[] to download a copy of pre-complied conda environment yml file and setup by 
 ```
-$ conda create -c conda-forge -n my-rdkit-env rdkit
-$ conda activate my-rdkit-env
+$ conda env create -f Gcoupler.yml
+$ conda activate Gcoupler
 ```
 
+**Tool dependencies**
+1. [LigBuilder V3](https://gitlabsbnb.irbbarcelona.org/packages/signaturizer)
+2. [OpenBabel(2.4.1)](https://github.com/marcotcr/lime)
