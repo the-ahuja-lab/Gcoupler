@@ -171,9 +171,6 @@ Additional arguments:
 The output folder will contain the following files at the end of the successful execution of Authenticator module
 | Files | Description |
 | -------- | -------- |
-| Progress.st | Status file containing Gcoupler progress |
-| Synth.csv | CSV file containing SMILES of the synthetic compounds  |
-| PDBQT files | Docking ready synthetic compounds |
 | Synth_BE.csv | CSV file containing SMILES and binding energy data of the synthetic compounds |
 | Labeled_cmps.csv | CSV file containing SMILES and class information (HAB/LAB) of the synthetic compounds |
 | PDF files | Distribution plots at each qualified cutoff with balanced classes, containing information about the statistical test performed and respective p-value |
@@ -254,14 +251,9 @@ Warning!! The above function does not create model for large-scale screeing
 The output folder will contain the following files at the end of the successful execution of Generator module
 | Files | Description |
 | -------- | -------- |
-| Progress.st | Status file containing Gcoupler progress |
-| Synth.csv | CSV file containing SMILES of the synthetic compounds  |
-| PDBQT files | Docking ready synthetic compounds |
-| Synth_BE.csv | CSV file containing SMILES and binding energy data of the synthetic compounds |
-| Labeled_cmps.csv | CSV file containing SMILES and class information (HAB/LAB) of the synthetic compounds |
-| PDF files | Distribution plots at each qualified cutoff with balanced classes, containing information about the statistical test performed and respective p-value |
-| Model Folders | Folders containing base model & K-Fold cross-validation checkpoints |
 | PDF files | Heatmap of base model parameters, Boxplot of K-Fold cross-validation, Base model Test/Train AUC plots |
+| Model Folders | Folders containing base model checkpoints |
+| KFoldCV | Folder containing  K subfolders with model checkpoints for each fold |
 | model_100 | Folder 100% synthetic data trained Graph-Neural Network model for **Large-scale screening** |
 
 
