@@ -89,23 +89,23 @@ Set paths for the installed third-party softwares and default output folder to c
 ```
 To submit the query protein file of interest in PDB format
 ```
->>> sz.input_structure(path='pre-set deafult Output folder/','path to pdbfile.pdb')
+>>> sz.input_structure(path='pre-set deafult Output folder/',pdb='path to pdbfile.pdb')
 Cavity will output 16 cavity file(s)
 ```
 Output shows total number of cavities predicted (in this case 16), which can be visualised by it's integer identifier
 ```
 >>> cavity=4 #To select cavity number 4 as target cavity
->>> sz.cavity_view(path='pre-set deafult Output folder/',cavity)
+>>> sz.cavity_view(path='pre-set deafult Output folder/',CvID=cavity)
 ```
 
 User can either directly choose a cavity number for the ligand synthesis
 ```
 >>> cavity=4 #To select cavity number 4 as target cavity
->>> sz.compund_synthesis(path='pre-set deafult Output folder/',cavity)
+>>> sz.compund_synthesis(path='pre-set deafult Output folder/',CvID=cavity)
 ```
 Or user can opt for cavity detection by submitting residue of interest in a TSV (Tab separated) file
 ```
->>> sz.cavity_detect(path='pre-set deafult Output folder/','Residue_list.tsv')
+>>> sz.cavity_detect(path='pre-set deafult Output folder/',res_list='Residue_list.tsv')
 ```
 Residue_list.tsv
 ```
@@ -123,12 +123,12 @@ User can specify the number of compounds to synthesize (Default: 500)
 ```
 >>> cavity=4 #To select cavity number 4 as target cavity
 >>> lcount=800 #To synthesize 800 compounds 
->>> sz.compund_synthesis(path='pre-set deafult Output folder/',cavity, ligand_count=lcount)
+>>> sz.compund_synthesis(path='pre-set deafult Output folder/',CavID=cavity, ligand_count=lcount)
 ```
 OR
 ```
 >>> lcount=800 #To synthesize 800 compounds 
->>> sz.cavity_detect(path='pre-set deafult Output folder/','Residue_list.tsv', ligand_count=lcount)
+>>> sz.cavity_detect(path='pre-set deafult Output folder/',res_list='Residue_list.tsv', ligand_count=lcount)
 ```
 
 ##### Output folder
