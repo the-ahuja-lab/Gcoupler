@@ -85,27 +85,27 @@ To identify the putative cavities on the protein surface with the potential to b
 ```
 Set paths for the installed third-party softwares and default output folder to collect the intermediate result files and plots
 ```
->>> sz.Set_paths(LigBuilder_path='path to LigBuilderV3.0/',libiomp5_file='path to libiomp5.h file containing folder/',Output_dir='path to folder/')
+>>> sz.Set_paths(LigBuilder_path='path to LigBuilderV3.0/',libiomp5_file='path to libiomp5.h file containing folder/',Output_dir='path to deafult folder/')
 ```
 To submit the query protein file of interest in PDB format
 ```
->>> sz.input_structure('path to pdbfile.pdb')
+>>> sz.input_structure(path='pre-set deafult Output folder/','path to pdbfile.pdb')
 Cavity will output 16 cavity file(s)
 ```
 Output shows total number of cavities predicted (in this case 16), which can be visualised by it's integer identifier
 ```
 >>> cavity=4 #To select cavity number 4 as target cavity
->>> sz.cavity_view(cavity)
+>>> sz.cavity_view(path='pre-set deafult Output folder/',cavity)
 ```
 
 User can either directly choose a cavity number for the ligand synthesis
 ```
 >>> cavity=4 #To select cavity number 4 as target cavity
->>> sz.compund_synthesis(cavity)
+>>> sz.compund_synthesis(path='pre-set deafult Output folder/',cavity)
 ```
 Or user can opt for cavity detection by submitting residue of interest in a TSV (Tab separated) file
 ```
->>> sz.cavity_detect(Residue_list.tsv)
+>>> sz.cavity_detect(path='pre-set deafult Output folder/','Residue_list.tsv')
 ```
 Residue_list.tsv
 ```
@@ -123,12 +123,12 @@ User can specify the number of compounds to synthesize (Default: 500)
 ```
 >>> cavity=4 #To select cavity number 4 as target cavity
 >>> lcount=800 #To synthesize 800 compounds 
->>> sz.compund_synthesis(cavity, ligand_count=lcount)
+>>> sz.compund_synthesis(path='pre-set deafult Output folder/',cavity, ligand_count=lcount)
 ```
 OR
 ```
 >>> lcount=800 #To synthesize 800 compounds 
->>> sz.cavity_detect(Residue_list.tsv, ligand_count=lcount)
+>>> sz.cavity_detect(path='pre-set deafult Output folder/','Residue_list.tsv', ligand_count=lcount)
 ```
 
 ##### Output folder
@@ -148,7 +148,7 @@ import Authenticator as au
 ```
 To calculate interaction (binding energy) of individual synthetic compounds with the target cavity (which they are synthesized from)
 ```
->>> au.synthetic_interaction()
+>>> au.synthetic_interaction(path='pre-set deafult Output folder/')
 ```
 Additional arguments:
 1. method: Statistical test to use for binding energy cutoff estimation
@@ -169,18 +169,18 @@ Additional arguments:
 
 Example
 ```
->>> au.synthetic_interaction(method='KS-test',p_val=0.05,plot='Density')
+>>> au.synthetic_interaction(path='pre-set deafult Output folder/',method='KS-test',p_val=0.05,plot='Density')
 ```
 
 To classify synthetic compounds into binary classes of HAB & LAB based on binding energy cutoff (Default: -7)
 ```
 >>> cutoff = -9  #user decided binding energy cutoff for synthetic compound binary classification 
->>> au.synthetic_classify(cf=cutoff)
+>>> au.synthetic_classify(path='pre-set deafult Output folder/',cf=cutoff)
 ```
 
 In case user want to opt for decoys as negative class against HABs
 ```
->>> au.synthetic_decoys()
+>>> au.synthetic_decoys(path='pre-set deafult Output folder/')
 ```
 Additional arguments:
 
@@ -210,22 +210,22 @@ To pre-process the binary data (HAB & LAB), and test against four base models
 3. GCN: Graph Convolution Network
 4. GAT: Graph Attention Network
 ```
->>> ge.multi_model_test()
+>>> ge.multi_model_test(path='pre-set deafult Output folder/')
 ```
 ##### Optional 
 User can provide pre-compiled binary data for multi model testing (limited to this function only)
 ```
 >>> data='/home/username/cmp.csv' #cmp.csv file containing "SMILES" & "Status" column with SMILES of compounds and 1/0 as class information respectively 
->>> ge.multi_model_test(fi=data)
+>>> ge.multi_model_test(path='pre-set deafult Output folder/',fi=data)
 ```
 
 Save the base model scoring metrics as Pandas dataframe
 ```
->>> matrices = ge.multi_model_test(fi=data)
+>>> matrices = ge.multi_model_test(path='pre-set deafult Output folder/',fi=data)
 ```
 To select the best-performing model for the hyperparameter tuning (HPT) with K-Fold cross-validation 
 ```
->>> ge.MD_kfold(mdl='GCN',k=5)
+>>> ge.MD_kfold(path='pre-set deafult Output folder/',mdl='GCN',k=5)
 ```
 Additional arguments:
 
@@ -265,7 +265,7 @@ Modifiable Hyperparameter list:
 ##### Optional
 User can opt for hyperparameter tuning of any selected model, without K-Fold cross-validation (Only for testing diffrent hyperparameter grid range)
 ```
->>> ge.model_hpt(mdl='GCN', params={dictionary}) #dictionary=['parameter name':[parameter grid]]
+>>> ge.model_hpt(path='pre-set deafult Output folder/',mdl='GCN', params={dictionary}) #dictionary=['parameter name':[parameter grid]]
 ```
 Warning!! The above function does not create model for large-scale screening
 
@@ -290,9 +290,9 @@ Prepare a list of canonical SMILES (OpenBabel generated) strings of the qurey co
 ```
 Run predictions on a pre-trained Graph-Neural Network model (Model selected for K-Fold cross on last run)
 ```
->>> ge.MD_pred(smiles)
+>>> ge.MD_pred(path='pre-set deafult Output folder/',smiles)
 ```
 Save the result as Pandas dataframe
 ```
->>> result = ge.MD_pred(smiles)
+>>> result = ge.MD_pred(path='pre-set deafult Output folder/',smiles)
 ```
