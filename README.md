@@ -12,15 +12,37 @@ Gcoupler, which leverages an integrative approach combining _de novo_ ligand des
 The only strong dependencies for this resource are [**RDKit**](https://www.rdkit.org/) and [**DeepChem**](https://github.com/deepchem/deepchem) which can be installed in a local [Conda](https://conda.io/) environment.
 
 
-Click [here]() to download a copy of pre-complied conda environment yml file. The environment can be setup by 
+**Package dependencies**
+1. [seaborn>=0.11.2](https://pypi.org/project/seaborn/)
+2. [pandas>=1.3.5](https://pandas.pydata.org/)
+3. [numpy>=1.21.6](https://numpy.org)
+4. [py3Dmol>=0.9.2](https://pypi.org/project/py3Dmol/)
+5. [scipy>=1.5.2](https://pypi.org/project/scipy/)
+6. [matplotlib>=3.2.2](https://pypi.org/project/matplotlib/)
+7. [rdkit-pypi>=2020.9.5](https://pypi.org/project/rdkit-pypi/)
+8. [deepchem>=2.5.0](https://pypi.org/project/deepchem/)
+9. [imblearn](https://pypi.org/project/imblearn/)
+10. [vina>=1.2.0.dev3](https://pypi.org/project/vina/)
+11. [scikit-learn>=0.22.2](https://pypi.org/project/scikit-learn/)
+12. [dgl>=0.7.2](https://pypi.org/project/dgl/)
+
+The installation procedure takes less than 5 minutes.
 ```
-$ conda env create -f Gcoupler.yml
-$ conda activate Gcoupler
+$ pip install <package-name>
 ```
 
+**OR**
+
+Click [here](https://drive.google.com/file/d/1jcNsmVmlI3WQQ0hHAWyXPt6ie_t1tQDv/view?usp=sharing) to download a dependencies.txt file, and setup the environment by 
+```
+$ pip install -r dependencies.txt
+```
+
+
+
 **Third-party dependencies**
-1. [LigBuilder V3.0]()
-2. [OpenBabel (2.4.1)]()
+1. [LigBuilder V3.0](https://drive.google.com/file/d/1xFZCJeWCpBkaN24UFHCQUYWYmce2bx7Y/view?usp=sharing)
+2. [OpenBabel (2.4.1)](https://drive.google.com/file/d/1SZo8op62KRyTzHmg5RMsUtxkH8oFp357/view?usp=sharing)
 
 The installation procedure takes less than 5 minutes.
 
@@ -87,7 +109,7 @@ Or user can opt for cavity detection by submitting residue of interest in a TSV 
 ```
 Residue_list.tsv
 ```
-$head -5 Residue_list.tsv
+$ head -5 Residue_list.tsv
 E       305
 T       306
 I       310
