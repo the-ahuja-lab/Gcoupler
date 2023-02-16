@@ -13,18 +13,18 @@ The only strong dependencies for this resource are [**RDKit**](https://www.rdkit
 
 
 **Package dependencies**
-1. [seaborn>=0.11.2](https://pypi.org/project/seaborn/)
-2. [pandas>=1.3.5](https://pandas.pydata.org/)
-3. [numpy>=1.21.6](https://numpy.org)
-4. [py3Dmol>=0.9.2](https://pypi.org/project/py3Dmol/)
-5. [scipy>=1.5.2](https://pypi.org/project/scipy/)
-6. [matplotlib>=3.2.2](https://pypi.org/project/matplotlib/)
-7. [rdkit-pypi>=2020.9.5](https://pypi.org/project/rdkit-pypi/)
-8. [deepchem>=2.5.0](https://pypi.org/project/deepchem/)
+1. [seaborn (>=0.11.2)](https://pypi.org/project/seaborn/)
+2. [pandas (>=1.3.5)](https://pandas.pydata.org/)
+3. [numpy (>=1.21.6)](https://numpy.org)
+4. [py3Dmol (>=0.9.2)](https://pypi.org/project/py3Dmol/)
+5. [scipy (>=1.5.2)](https://pypi.org/project/scipy/)
+6. [matplotlib (>=3.2.2)](https://pypi.org/project/matplotlib/)
+7. [rdkit-pypi (>=2020.9.5)](https://pypi.org/project/rdkit-pypi/)
+8. [deepchem (>=2.5.0)](https://pypi.org/project/deepchem/)
 9. [imblearn](https://pypi.org/project/imblearn/)
-10. [vina>=1.2.0.dev3](https://pypi.org/project/vina/)
-11. [scikit-learn>=0.22.2](https://pypi.org/project/scikit-learn/)
-12. [dgl>=0.7.2](https://pypi.org/project/dgl/)
+10. [vina (>=1.2.0.dev3)](https://pypi.org/project/vina/)
+11. [scikit-learn (>=0.22.2)](https://pypi.org/project/scikit-learn/)
+12. [dgl (>=0.7.2)](https://pypi.org/project/dgl/)
 
 The installation procedure takes less than 5 minutes.
 ```
