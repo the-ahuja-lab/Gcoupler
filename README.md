@@ -18,7 +18,7 @@ Gcoupler, which leverages an integrative approach combining _de novo_ ligand des
 <img src="Images/Docker_page.png"></div>
 <br>
 
-This is the repo of the official Docker image for Gcoupler. Click [here](https://github.com/the-ahuja-lab/Gcoupler/blob/main/docker/README.MD) for the full readme on how to use the Docker image.
+This is the repo of the official [Docker image](https://hub.docker.com/r/sanjayk741/gcoupler) for **Gcoupler**. Click [here](https://github.com/the-ahuja-lab/Gcoupler/blob/main/docker/README.MD) for the full readme on how to use the Docker image.
 
 The full readme is generated over in docker/README.
 
@@ -120,7 +120,7 @@ Output shows total number of cavities predicted (in this case 16), which can be 
 User can either directly choose a cavity number for the ligand synthesis
 ```
 >>> cavity=4 #To select cavity number 4 as target cavity
->>> sz.compund_synthesis(path='pre-set deafult Output folder/',CvID=cavity)
+>>> sz.compund_synthesis(path='pre-set deafult Output folder/',CavID=cavity)
 ```
 Or user can opt for cavity detection by submitting residue of interest in a TSV (Tab separated) file
 ```
