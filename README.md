@@ -9,6 +9,26 @@
 Gcoupler, which leverages an integrative approach combining _de novo_ ligand design, statistical methods, and Graph Neural Networks for rational prediction of high-affinity ligands. Gcoupler offers an efficient and comparatively faster route to explore endogenous allosteric sites of GPCRs, including the GPCR-Gα interface. <br/><br/>
 
 
+## How to use Gcoupler?
+
+
+### Pre-compiled Docker conatiner
+<br>
+<div align="center">
+<img src="Images/Docker_page.png"></div>
+<br>
+
+Gcoupler can be used through [docker container](https://hub.docker.com/repository/docker/sanjayk741/gcoupler/general)
+
+Instructions for installing and running docker on any PC can be found [here](https://docs.docker.com/engine/install/) 
+1. [Windows](https://docs.docker.com/desktop/install/windows-install/)
+2. [MacOS](https://docs.docker.com/desktop/install/mac-install/)
+3. [Linux](https://docs.docker.com/desktop/install/linux-install/)
+
+Steps for running the container and file input/output can be found [here](https://github.com/the-ahuja-lab/Gcoupler/blob/main/docker/README.MD)
+
+### Building from dependecies
+
 The only strong dependencies for this resource are [**RDKit**](https://www.rdkit.org/) and [**DeepChem**](https://github.com/deepchem/deepchem) which can be installed in a local [Conda](https://conda.io/) environment.
 
 
@@ -63,10 +83,7 @@ $ make -j2
 $ sudo make install
 ```
 
-## How to use Gcoupler?
-
-
-### Installation using pip 
+**Installation of Gcoupler**
 ```
 $ pip install Gcoupler
 ```
