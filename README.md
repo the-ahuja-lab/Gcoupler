@@ -12,22 +12,24 @@ Gcoupler, which leverages an integrative approach combining _de novo_ ligand des
 ## How to use Gcoupler?
 
 
-### Pre-compiled Docker conatiner
+### A. Pre-compiled Docker conatiner
 <br>
 <div align="center">
 <img src="Images/Docker_page.png"></div>
 <br>
 
-Gcoupler can be used through [docker container](https://hub.docker.com/repository/docker/sanjayk741/gcoupler/general)
+This is the repo of the official Docker image for Gcoupler. Click [here](https://github.com/the-ahuja-lab/Gcoupler/blob/main/docker/README.MD) for the full readme on how to use the Docker image.
+
+The full readme is generated over in docker/README.
 
 Instructions for installing and running docker on any PC can be found [here](https://docs.docker.com/engine/install/) 
 1. [Windows](https://docs.docker.com/desktop/install/windows-install/)
 2. [MacOS](https://docs.docker.com/desktop/install/mac-install/)
 3. [Linux](https://docs.docker.com/desktop/install/linux-install/)
 
-Steps for running the container and file input/output can be found [here](https://github.com/the-ahuja-lab/Gcoupler/blob/main/docker/README.MD)
+## OR
 
-### Building from dependecies
+### B. Building from dependecies
 
 The only strong dependencies for this resource are [**RDKit**](https://www.rdkit.org/) and [**DeepChem**](https://github.com/deepchem/deepchem) which can be installed in a local [Conda](https://conda.io/) environment.
 
