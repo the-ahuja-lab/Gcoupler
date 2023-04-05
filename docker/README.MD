@@ -2,7 +2,7 @@
 
 <br>
 <div align="center">
-<img src="Images/Docker_page.png"></div>
+<img src="/Images/Docker_page.png"></div>
 <br>
 
 This is the repo of the official [Docker image](https://hub.docker.com/r/sanjayk741/gcoupler) for **Gcoupler**.
