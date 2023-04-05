@@ -64,8 +64,7 @@ $ docker ps -a
 ```
 To write a file to the container, use the **docker cp** command to copy the file from the host to the container.
 ```
-$ docker cp file.txt container_id:/CDir/
+$ docker cp file container_id:/CDir/
 ```
-This command will copy the **file.txt** file from the host to the **Gcoupler** container with ID **container_id** at the /CDir/ directory inside the container
+This command will copy the **file** file (pdb/tsv) from the host to the **Gcoupler** container with ID **container_id** at the /CDir/ directory inside the container
 
-### Output
