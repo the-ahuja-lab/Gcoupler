@@ -276,10 +276,9 @@ Modifiable Hyperparameter list:
 |  | predictor_hidden_feats | list of int, e.g., [100,150,200,250,300] |
 |  | learning_rate | list of float, e.g., [0.01,0.1,1.0] |
 |  | predictor_droput | list of int, e.g., [0,1] |
-| GAT | alpha | list of floats, e.g., [0,0.2,0.4] |
+| GAT | alpha | list of floats, e.g., [0.1,0.2,0.4] |
 |  | dropout | list of floats, e.g., [0, 0.1, 0.5] |
 |  | n_attention_heads | list of int, e.g., [5,10,15,20] |
-|  | number_atom_features | list of int, e.g., [10,20,30,40,50] |
 
 ##### Optional
 User can opt for hyperparameter tuning of any selected model, without K-Fold cross-validation (Only for testing diffrent hyperparameter grid range)
@@ -313,5 +312,5 @@ Run predictions on a pre-trained Graph-Neural Network model (Model selected for 
 ```
 Save the result as Pandas dataframe
 ```
->>> result = ge.MD_pred(path='pre-set deafult Output folder/',smiles=smiles)
+>>> result = ge.MD_pred(path='pre-set deafult Output folder/',smi_list=smiles)
 ```
