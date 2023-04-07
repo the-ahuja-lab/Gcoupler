@@ -308,7 +308,7 @@ Prepare a list of canonical SMILES (OpenBabel generated) strings of the qurey co
 ```
 Run predictions on a pre-trained Graph-Neural Network model (Model selected for K-Fold cross on last run)
 ```
->>> ge.MD_pred(path='pre-set deafult Output folder/',smiles=smiles)
+>>> ge.MD_pred(path='pre-set deafult Output folder/',smi_list=smiles)
 ```
 Save the result as Pandas dataframe
 ```
