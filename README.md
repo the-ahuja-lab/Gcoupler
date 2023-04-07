@@ -12,7 +12,7 @@ Gcoupler, which leverages an integrative approach combining _de novo_ ligand des
 ## How to use Gcoupler?
 
 
-### A. Pre-compiled Docker conatiner
+### A. Pre-compiled Docker container
 <br>
 <div align="center">
 <img src="Images/Docker_page.png"></div>
