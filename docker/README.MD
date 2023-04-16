@@ -28,6 +28,16 @@ $ docker run -it <image-name> /bin/bash
 ```
 Replace **<image-name\>** with the name or ID of the Docker image of **Gcoupler**.
 
+Find the ID of the currently running container for **input** and **output**.
+```
+$ docker ps -a
+```
+To start the container again, and access it's terminal 
+```
+$ docker start <container-ID>
+$ docker exec -it <container-ID> bash
+```
+
 ## Running **Gcoupler**
 You can either run Gcoupler by python **command line** mode directly
 ```
@@ -55,16 +65,34 @@ Replace **<ip-address\>** with the IP address that you noted down in **STEP-I**
 
   This should start the Jupyter Notebook server and display a URL in the terminal that you can use to access the Jupyter Notebook interface.
 
+### Deafult paths inside the container
+```
+>>> import Synthesizer as as
+>>> sz.Set_paths(LigBuilder_path='/LG/LigBuilderV3.0/',libiomp5_file='/opt/conda/envs/Gcoupler/lib/',Output_dir='/root/CDir/')
+```
+The option **Output_dir** can be changed, in case user decide to make other directories inside the container 
+
 ## Input/Output
 
 ### Input 
-Find the ID of the container you just executed using the **docker ps -a** command.
+Find the ID of the currently running container, just executed using the **docker ps -a** command.
 ```
 $ docker ps -a
 ```
 To write a file to the container, use the **docker cp** command to copy the file from the host to the container.
 ```
-$ docker cp file container_id:/CDir/
+$ docker cp file container_id:/root/CDir/
 ```
-This command will copy the **file** file (pdb/tsv) from the host to the **Gcoupler** container with ID **container_id** at the /CDir/ directory inside the container
+This command will copy the **file** file (pdb/tsv) from the host current directory to the **Gcoupler** container with ID **container_id** at the CDir/ directory inside the container
+
+### Output
+Find the ID of the currently running container, just executed using the **docker ps -a** command.
+```
+$ docker ps -a
+```
+To write a file from the container, use the **docker cp** command to copy the file from the container to the host.
+```
+$ docker cp container_id:/root/CDir/file-name .
+```
+This command will copy the **file** file (csv/pdf)from the **Gcoupler** container with ID **container_id** under the CDir/ directory inside the container to the host current directory.
 
