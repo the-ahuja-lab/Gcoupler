@@ -104,7 +104,11 @@ To identify the putative cavities on the protein surface with the potential to b
 ```
 Set paths for the installed third-party softwares and default output folder to collect the intermediate result files and plots
 ```
->>> sz.Set_paths(LigBuilder_path='path to LigBuilderV3.0/',libiomp5_file='path to libiomp5.h file containing folder/',Output_dir='path to deafult folder/')
+>>> sz.Set_paths(LigBuilder_path='path to LigBuilderV3.0/',libiomp5_file='path to libiomp5.so file containing folder/',Output_dir='path to deafult folder/')
+```
+**Note:** to find the folder containing libiomp5.h file
+```
+$ find / -name libiomp5.so
 ```
 To submit the query protein file of interest in PDB format
 ```
@@ -126,7 +130,7 @@ Or user can opt for cavity detection by submitting residue of interest in a TSV 
 ```
 >>> sz.cavity_detect(path='pre-set deafult Output folder/',res_list='Residue_list.tsv')
 ```
-Residue_list.tsv
+Residue_list.tsv (The first column containes the Single-letter amino acid codes, and the second column their respective positions)
 ```
 $ head -5 Residue_list.tsv
 E       305
@@ -135,6 +139,7 @@ I       310
 Y       316
 V       466
 ```
+**Note:** No header should be provided in the tsv file
 
 ##### Optional 
 
@@ -207,6 +212,17 @@ Additional arguments:
 | -------- | -------- |
 | cf | User specified binding energy cutoff for HABs, for which decoys will be generated (Default: -7) |
 | decoy_csv | A csv file containg two coulmns. **SMILES** column containing the compound SMILES, and **Annotation** column containing it's class information HAB (output from previous function) or Decoy |
+
+Decoy_data.csv
+```
+$ head -5 Decoy_data.csv
+SMILES,Annotation
+O(CC1CO1)c2cccc3ccccc23,HAB
+Nc1nc(N)nc2ncc(CN(C)c3ccc(cc3)C(=O)NC(CCC(=O)O)C(=O)O)nc12,HAB
+N(N=C(C)CCCCCC)c1ccc(cc1[N+](=O)[O-])[N+](=O)[O-],Decoy
+C(CCCCCC)CCC[Se]C#N,Decoy
+```
+**Note:** User should use either **synthetic_classify** or **synthetic_decoys** function to proceed with not both 
 
 ##### Output folder
 The output folder will contain the following files at the end of the successful execution of Authenticator module
