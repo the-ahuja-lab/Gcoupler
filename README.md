@@ -29,9 +29,9 @@ Instructions for installing and running docker on any PC can be found [here](htt
 
 ## OR
 
-### B. Building from dependecies
+### B. Building from dependencies
 
-The only strong dependencies for this resource are [**RDKit**](https://www.rdkit.org/) and [**DeepChem**](https://github.com/deepchem/deepchem) which can be installed in a local [Conda](https://conda.io/) environment.
+The only strong dependencies for this resource are [**RDKit**](https://www.rdkit.org/) and [**DeepChem**](https://github.com/deepchem/deepchem), which can be installed in a local [Conda](https://conda.io/) environment.
 
 
 **Package dependencies**
@@ -55,7 +55,7 @@ $ pip install <package-name>
 
 **OR**
 
-Click [here](https://drive.google.com/file/d/1jcNsmVmlI3WQQ0hHAWyXPt6ie_t1tQDv/view?usp=sharing) to download a dependencies.txt file, and setup the environment by 
+Click [here](https://drive.google.com/file/d/1jcNsmVmlI3WQQ0hHAWyXPt6ie_t1tQDv/view?usp=sharing) to download a dependencies.txt file and setup the environment by 
 ```
 $ pip install -r dependencies.txt
 ```
@@ -91,7 +91,7 @@ $ pip install Gcoupler
 ```
 
 ## Pipeline
-Gcoupler supports 3 distinct modules:<br/>
+Gcoupler supports three distinct modules:<br/>
 1. Synthesizer
 2. Authenticator
 3. Generator
@@ -102,7 +102,7 @@ To identify the putative cavities on the protein surface with the potential to b
 ```
 >>> import Synthesizer as sz
 ```
-Set paths for the installed third-party softwares and default output folder to collect the intermediate result files and plots
+Set paths for the installed third-party software and default output folder to collect the intermediate result files and plots
 ```
 >>> sz.Set_paths(LigBuilder_path='path to LigBuilderV3.0/',libiomp5_file='path to libiomp5.so file containing folder/',Output_dir='path to deafult folder/')
 ```
@@ -115,22 +115,22 @@ To submit the query protein file of interest in PDB format
 >>> sz.input_structure(path='pre-set deafult Output folder/',pdb='path to pdbfile.pdb')
 Cavity will output 16 cavity file(s)
 ```
-Output shows total number of cavities predicted (in this case 16), which can be visualised by it's integer identifier
+Output shows the total number of cavities predicted (in this case, 16), which can be visualized by it's integer identifier.
 ```
->>> cavity=4 #To select cavity number 4 as target cavity
->>> sz.cavity_view(path='pre-set deafult Output folder/',CvID=cavity)
+>>> cavity=4 #To select cavity number 4 as the target cavity
+>>> sz.cavity_view(path='pre-set default Output folder/',CvID=cavity)
 ```
 
-User can either directly choose a cavity number for the ligand synthesis
+Users can either directly choose a cavity number for the ligand synthesis.
 ```
->>> cavity=4 #To select cavity number 4 as target cavity
->>> sz.compund_synthesis(path='pre-set deafult Output folder/',CavID=cavity)
+>>> cavity=4 #To select cavity number 4 as the target cavity
+>>> sz.compund_synthesis(path='pre-set default Output folder/',CavID=cavity)
 ```
-Or user can opt for cavity detection by submitting residue of interest in a TSV (Tab separated) file
+Or the user can opt for cavity detection by submitting residue of interest in a TSV (Tab-separated) file.
 ```
 >>> sz.cavity_detect(path='pre-set deafult Output folder/',res_list='Residue_list.tsv')
 ```
-Residue_list.tsv (The first column containes the Single-letter amino acid codes, and the second column their respective positions)
+Residue_list.tsv (The first column contains the Single-letter amino acid codes, and the second column their respective positions)
 ```
 $ head -5 Residue_list.tsv
 E       305
@@ -139,20 +139,20 @@ I       310
 Y       316
 V       466
 ```
-**Note:** No header should be provided in the tsv file
+**Note:** No header should be provided in the TSV file
 
 ##### Optional 
 
 User can specify the number of compounds to synthesize (Default: 500)
 ```
->>> cavity=4 #To select cavity number 4 as target cavity
+>>> cavity=4 #To select cavity number 4 as the target cavity
 >>> lcount=800 #To synthesize 800 compounds 
->>> sz.compund_synthesis(path='pre-set deafult Output folder/',CavID=cavity, ligand_count=lcount)
+>>> sz.compund_synthesis(path='pre-set default Output folder/',CavID=cavity, ligand_count=lcount)
 ```
 OR
 ```
 >>> lcount=800 #To synthesize 800 compounds 
->>> sz.cavity_detect(path='pre-set deafult Output folder/',res_list='Residue_list.tsv', ligand_count=lcount)
+>>> sz.cavity_detect(path='pre-set default Output folder/',res_list='Residue_list.tsv', ligand_count=lcount)
 ```
 
 ##### Output folder
@@ -166,11 +166,11 @@ The output folder will contain the following files at the end of the successful 
 
 ### Authenticator
 
-To segregate the synthetic compounds into binary classes, based on their actual interaction at the molecular level
+To segregate the synthetic compounds into binary classes based on their actual interaction at the molecular level
 ```
 import Authenticator as au
 ```
-To calculate interaction (binding energy) of individual synthetic compounds with the target cavity (which they are synthesized from)
+To calculate the interaction (binding energy) of individual synthetic compounds with the target cavity (in which they are synthesized)
 ```
 >>> au.synthetic_interaction(path='pre-set deafult Output folder/')
 ```
@@ -199,7 +199,7 @@ Example
 To classify synthetic compounds into binary classes of HAB & LAB based on binding energy cutoff (Default: -7)
 ```
 >>> cutoff = -9  #user decided binding energy cutoff for synthetic compound binary classification 
->>> au.synthetic_classify(path='pre-set deafult Output folder/',cf=cutoff)
+>>> au.synthetic_classify(path='pre-set default Output folder/',cf=cutoff)
 ```
 
 In case user want to opt for decoys as negative class against HABs
@@ -210,8 +210,8 @@ Additional arguments:
 
 | Arguments | Description |
 | -------- | -------- |
-| cf | User specified binding energy cutoff for HABs, for which decoys will be generated (Default: -7) |
-| decoy_csv | A csv file containg two coulmns. **SMILES** column containing the compound SMILES, and **Annotation** column containing it's class information HAB (output from previous function) or Decoy |
+| cf | User-specified binding energy cutoff for HABs, for which decoys will be generated (Default: -7) |
+| decoy_csv | A CSV file containing two columns. **SMILES** column containing the compound SMILES, and **Annotation** column containing its class information HAB (output from the previous function) or Decoy |
 
 Decoy_data.csv
 ```
@@ -235,11 +235,11 @@ The output folder will contain the following files at the end of the successful 
 
 ### Generator
 
-To build Graph-Neural Network based classification models for large-scale screening of the user query compounds 
+To build Graph-Neural Network-based classification models for large-scale screening of the user query compounds 
 ```
 >>> import Generator as ge
 ```
-To pre-process the binary data (HAB & LAB), and test against four base models
+To pre-process the binary data (HAB & LAB) and test against four base models
 1. GCM: GraphConv Model
 2. AFP: Attentive FP
 3. GCN: Graph Convolution Network
@@ -248,13 +248,13 @@ To pre-process the binary data (HAB & LAB), and test against four base models
 >>> ge.multi_model_test(path='pre-set deafult Output folder/')
 ```
 ##### Optional 
-User can provide pre-compiled binary data for multi model testing (limited to this function only)
+Users can provide pre-compiled binary data for multi-model testing (limited to this function only)
 ```
 >>> data='/home/username/cmp.csv' #cmp.csv file containing "SMILES" & "Status" column with SMILES of compounds and 1/0 as class information respectively 
 >>> ge.multi_model_test(path='pre-set deafult Output folder/',fi=data)
 ```
 
-Save the base model scoring metrics as Pandas dataframe
+Save the base model scoring metrics as Pandas data frame
 ```
 >>> matrices = ge.multi_model_test(path='pre-set deafult Output folder/',fi=data)
 ```
@@ -266,14 +266,14 @@ Additional arguments:
 
 | Arguments | Description |
 | -------- | -------- |
-| k | Fold value (int) for model cross validation on the best hyperparameters (Default: 3) |
+| k | Fold value (int) for model cross-validation on the best hyperparameters (Default: 3) |
 | params | A dictionary with parameter names as key and respective grid as value |
 
-User can either opt for Gcoupler predefined hyperparameter grid for the selected model of interest for HPT
+Users can either opt for Gcoupler predefined hyperparameter grid for the selected model of interest for HPT.
 
 OR
 
-User can also specify the range of each hyperparameter for the selected model of interest for HPT
+Users can also specify the range of each hyperparameter for the selected model of interest for HPT.
 
 Modifiable Hyperparameter list:
 | Model | Parameters | Data type |
@@ -297,11 +297,11 @@ Modifiable Hyperparameter list:
 |  | n_attention_heads | list of int, e.g., [5,10,15,20] |
 
 ##### Optional
-User can opt for hyperparameter tuning of any selected model, without K-Fold cross-validation (Only for testing diffrent hyperparameter grid range)
+Users can opt for hyperparameter tuning of any selected model without K-Fold cross-validation (Only for testing different hyperparameter grid range)
 ```
 >>> ge.model_hpt(path='pre-set deafult Output folder/',mdl='GCN', params={dictionary}) #dictionary=['parameter name':[parameter grid]]
 ```
-Warning!! The above function does not create model for large-scale screening
+**Note:** The above function does not create a model for large-scale screening.
 
 ##### Output folder
 The output folder will contain the following files at the end of the successful execution of Generator module
@@ -314,19 +314,19 @@ The output folder will contain the following files at the end of the successful 
 
 
 ## Large-scale screening
-To predict binding probability for individual query compounds 
+To predict the binding probability for individual query compounds 
 ```
 >>> import Generator as ge
 ```
-Prepare a list of canonical SMILES (OpenBabel generated) strings of the qurey compounds
+Prepare a list of canonical SMILES (OpenBabel generated) strings of the query compounds
 ```
 >>> smiles =  ['ClCC=C', 'C=CCOC(=O)CC(C)C', ...]
 ```
-Run predictions on a pre-trained Graph-Neural Network model (Model selected for K-Fold cross on last run)
+Run predictions on a pre-trained Graph-Neural Network model (Model selected for K-Fold cross on the last run)
 ```
 >>> ge.MD_pred(path='pre-set deafult Output folder/',smi_list=smiles)
 ```
-Save the result as Pandas dataframe
+Save the result as Pandas data frame
 ```
 >>> result = ge.MD_pred(path='pre-set deafult Output folder/',smi_list=smiles)
 ```
