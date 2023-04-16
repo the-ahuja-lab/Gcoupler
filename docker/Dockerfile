@@ -75,21 +75,6 @@ RUN echo "ulimit -s unlimited" >> .bashrc
 CMD ["source", ".bashrc"]
 
 
-#WORKDIR /OB/
-# Install OpenBabel 2.4.1
-#RUN tar -xvf openbabel-2.4.1.tar.gz
-#RUN rm openbabel-2.4.1.tar.gz
-#WORKDIR /OB/openbabel-2.4.1/
-#RUN mkdir build
-#WORKDIR /OB/openbabel-2.4.1/build/
-#RUN ../../../cmake/cmake-3.4.1-Linux-x86_64/bin/cmake ..
-#RUN make
-#RUN make install
-
-# Set environment variables
-#ENV LD_LIBRARY_PATH="/usr/local/lib:${LD_LIBRARY_PATH}"
-
-
 CMD ["conda", "activate", "Gcoupler"]
 
 RUN pip install py3Dmol
