@@ -22,6 +22,8 @@ This is the repo of the official [Docker image](https://hub.docker.com/r/sanjayk
 
 The full readme is generated over in docker/README.
 
+**The image pull and execution takes less than 1 minute to setup.**
+
 Instructions for installing and running docker on any PC can be found [here](https://docs.docker.com/engine/install/) 
 1. [Windows](https://docs.docker.com/desktop/install/windows-install/)
 2. [MacOS](https://docs.docker.com/desktop/install/mac-install/)
@@ -48,7 +50,7 @@ The only strong dependencies for this resource are [**RDKit**](https://www.rdkit
 11. [scikit-learn (>=0.22.2)](https://pypi.org/project/scikit-learn/)
 12. [dgl (>=0.7.2)](https://pypi.org/project/dgl/)
 
-The installation procedure takes less than 5 minutes.
+**The installation procedure takes less than 15 minutes.**
 ```
 $ pip install <package-name>
 ```
@@ -66,7 +68,6 @@ $ pip install -r dependencies.txt
 1. [LigBuilder V3.0](https://drive.google.com/file/d/1xFZCJeWCpBkaN24UFHCQUYWYmce2bx7Y/view?usp=sharing)
 2. [OpenBabel (2.4.1)](https://drive.google.com/file/d/1SZo8op62KRyTzHmg5RMsUtxkH8oFp357/view?usp=sharing)
 
-The installation procedure takes less than 5 minutes.
 
 **Installation of LigBuilderV3**
 ```
@@ -84,11 +85,13 @@ $ cmake ..
 $ make -j2
 $ sudo make install
 ```
+**The third-party installation procedure takes less than 10 minutes to properly setup.**
 
 **Installation of Gcoupler**
 ```
 $ pip install Gcoupler
 ```
+**The package installation takes few seconds to finish.**
 
 ## Pipeline
 Gcoupler supports three distinct modules:<br/>
@@ -163,6 +166,7 @@ The output folder will contain the following files at the end of the successful 
 | Synth.csv | CSV file containing SMILES of the synthetic compounds  |
 | PDBQT files | Docking ready synthetic compounds |
 
+**Note:** Synthesizer module with a single cavity for generation of ~500 syntahetic binders (HABs/LABs) takes approximately one day
 
 ### Authenticator
 
@@ -232,6 +236,7 @@ The output folder will contain the following files at the end of the successful 
 | Labeled_cmps.csv | CSV file containing SMILES and class information (HAB/LAB) of the synthetic compounds |
 | PDF files | Distribution plots at each qualified cutoff with balanced classes, containing information about the statistical test performed and respective p-value |
 
+**Note:** Authenticator module without decoy generation takes approximately few minutes to complete. And it takes less than 5 minute with around ~300 decoy compound generation 
 
 ### Generator
 
@@ -313,6 +318,8 @@ The output folder will contain the following files at the end of the successful 
 | model_100 | Folder containing Graph-Neural Network model checkpoints trained on 100% synthetic data for **Large-scale screening** |
 
 
+**Note:** Generator module with simple hyper parameter tuning and 3Fold cross validation takes around 1hour to complete
+
 ## Large-scale screening
 To predict the binding probability for individual query compounds 
 ```
@@ -330,3 +337,5 @@ Save the result as Pandas data frame
 ```
 >>> result = ge.MD_pred(path='pre-set deafult Output folder/',smi_list=smiles)
 ```
+
+**Note:** Prediction for query compunds with a pre-trained model, for a given receptor cavity, in Gcoupler, takes less than a second for each SMILE
