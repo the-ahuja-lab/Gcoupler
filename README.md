@@ -11,6 +11,8 @@ Gcoupler leverages an integrative approach combining _de novo_ ligand design, st
 
 ## How to use Gcoupler?
 
+### Hardware Dependency
+**Both the operating system and the processor support Intel(R) AVX.**
 
 ### A. Pre-compiled Docker container
 <br>
@@ -89,7 +91,7 @@ $ sudo make install
 
 **Installation of Gcoupler**
 ```
-$ pip install Gcoupler
+$ pip install -i https://test.pypi.org/simple/ Gcoupler
 ```
 **The package installation takes few seconds to finish.**
 
