@@ -263,7 +263,7 @@ Users can provide pre-compiled binary data for multi-model testing (limited to t
 
 Save the base model scoring metrics as Pandas data frame
 ```
->>> matrices = ge.multi_model_test(path='pre-set deafult Output folder/',fi=data)
+>>> matrices = ge.multi_model_test(path='pre-set deafult Output folder/')
 ```
 To select the best-performing model for the hyperparameter tuning (HPT) with K-Fold cross-validation 
 ```
