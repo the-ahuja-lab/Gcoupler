@@ -24,7 +24,7 @@ This is the repo of the official [Docker image](https://hub.docker.com/r/sanjayk
 
 The full readme is generated over in docker/README.
 
-**The image pull and execution takes less than 1 minute to setup.**
+**The image pulls and execution takes less than 1 minute to set up.**
 
 Instructions for installing and running docker on any PC can be found [here](https://docs.docker.com/engine/install/) 
 1. [Windows](https://docs.docker.com/desktop/install/windows-install/)
@@ -87,13 +87,13 @@ $ cmake ..
 $ make -j2
 $ sudo make install
 ```
-**The third-party installation procedure takes less than 10 minutes to properly setup.**
+**The third-party installation procedure takes less than 10 minutes to properly set up.**
 
 **Installation of Gcoupler**
 ```
 $ pip install -i https://test.pypi.org/simple/ Gcoupler
 ```
-**The package installation takes few seconds to finish.**
+**The package installation takes a few seconds to finish.**
 
 ## Pipeline
 Gcoupler supports three distinct modules:<br/>
@@ -120,16 +120,21 @@ To submit the query protein file of interest in PDB format
 >>> sz.input_structure(path='pre-set deafult Output folder/',pdb='path to pdbfile.pdb')
 Cavity will output 16 cavity file(s)
 ```
-Output shows the total number of cavities predicted (in this case, 16), which can be visualized by it's integer identifier.
+The output shows the total number of cavities predicted (in this case, 16), which can be visualized by its integer identifier.
+
+Users can view the cavity scores for all the detected cavities (Optional)
 ```
->>> cavity=4 #To select cavity number 4 as the target cavity
+>>> sz.cavity_info(path='pre-set default Output folder/')
+```
+Users can also visualize a single cavity of choice in interactive mode (Optional)
+```
+>>> cavity=4 #To select cavity number 4 to view
 >>> sz.cavity_view(path='pre-set default Output folder/',CvID=cavity)
 ```
-
 Users can either directly choose a cavity number for the ligand synthesis.
 ```
 >>> cavity=4 #To select cavity number 4 as the target cavity
->>> sz.compund_synthesis(path='pre-set default Output folder/',CavID=cavity)
+>>> sz.compound_synthesis(path='pre-set default Output folder/',CavID=cavity)
 ```
 Or the user can opt for cavity detection by submitting residue of interest in a TSV (Tab-separated) file.
 ```
@@ -161,20 +166,20 @@ OR
 ```
 
 ##### Output folder
-The output folder will contain the following files at the end of the successful execution of Synthesizer module
+The output folder will contain the following files at the end of the successful execution of the Synthesizer module
 | Files | Description |
 | -------- | -------- |
 | Progress.st | Status file containing Gcoupler progress |
 | Synth.csv | CSV file containing SMILES of the synthetic compounds  |
 | PDBQT files | Docking ready synthetic compounds |
 
-**Note:** Synthesizer module with a single cavity for generation of ~500 syntahetic binders (HABs/LABs) takes approximately one day
+**Note:** Synthesizer module with a single cavity for generation of ~500 synthetic binders (HABs/LABs) takes approximately one day
 
 ### Authenticator
 
 To segregate the synthetic compounds into binary classes based on their actual interaction at the molecular level
 ```
-import Authenticator as au
+>>> import Authenticator as au
 ```
 To calculate the interaction (binding energy) of individual synthetic compounds with the target cavity (in which they are synthesized)
 ```
@@ -208,7 +213,7 @@ To classify synthetic compounds into binary classes of HAB & LAB based on bindin
 >>> au.synthetic_classify(path='pre-set default Output folder/',cf=cutoff)
 ```
 
-In case user want to opt for decoys as negative class against HABs
+In case the user want to opt for decoys as a negative class against HABs
 ```
 >>> au.synthetic_decoys(path='pre-set deafult Output folder/')
 ```
@@ -274,7 +279,7 @@ Additional arguments:
 | Arguments | Description |
 | -------- | -------- |
 | k | Fold value (int) for model cross-validation on the best hyperparameters (Default: 3) |
-| params | A dictionary with parameter names as key and respective grid as value |
+| params | A dictionary with parameter names as keys and respective grid as value |
 
 Users can either opt for Gcoupler predefined hyperparameter grid for the selected model of interest for HPT.
 
@@ -311,7 +316,7 @@ Users can opt for hyperparameter tuning of any selected model without K-Fold cro
 **Note:** The above function does not create a model for large-scale screening.
 
 ##### Output folder
-The output folder will contain the following files at the end of the successful execution of Generator module
+The output folder will contain the following files at the end of the successful execution of the Generator module
 | Files | Description |
 | -------- | -------- |
 | PDF files | Heatmap of base model performance metrics, Boxplot of K-Fold cross-validation, Base model Test/Train AUC plots |
@@ -340,4 +345,22 @@ Save the result as Pandas data frame
 >>> result = ge.MD_pred(path='pre-set deafult Output folder/',smi_list=smiles)
 ```
 
-**Note:** Prediction for query compunds with a pre-trained model, for a given receptor cavity, in Gcoupler, takes less than a second for each SMILE
+**Note:** Prediction for query compounds with a pre-trained model, for a given receptor cavity, in Gcoupler, takes less than a second for each SMILE
+
+### Cutoff Optimization
+To opt for an optimal probability cutoff (instead of default 0.5) for a more precise classification of predicted query compounds
+```
+>>> import Generator as ge
+```
+Users can choose the model of interest to optimize the cutoff against
+```
+>>> ge.cutoff_optimize(path='pre-set deafult Output folder/',mdl='GCN',method='Optimisation method')
+``` 
+
+Options:
+| Arguments | Option | Description |
+| -------- | -------- | -------- |
+| mdl | GCN/GCM/AFP/GAT | GNN model of interest  |
+| method | 'G-mean' or 'YoudenJ' | Method to use for optimization |
+
+**Note:** It is recommended that users optimize the cutoff for the GNN model they have K-Fold validated or will be using for the same. 
