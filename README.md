@@ -157,7 +157,7 @@ User can specify the number of compounds to synthesize (Default: 500)
 ```
 >>> cavity=4 #To select cavity number 4 as the target cavity
 >>> lcount=800 #To synthesize 800 compounds 
->>> sz.compund_synthesis(path='pre-set default Output folder/',CavID=cavity, ligand_count=lcount)
+>>> sz.compound_synthesis(path='pre-set default Output folder/',CavID=cavity, ligand_count=lcount)
 ```
 OR
 ```
