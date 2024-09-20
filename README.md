@@ -110,7 +110,7 @@ To identify the putative cavities on the protein surface with the potential to b
 ```
 Set paths for the installed third-party software and default output folder to collect the intermediate result files and plots
 ```
->>> sz.Set_paths(LigBuilder_path='path to LigBuilderV3.0/',libiomp5_file='path to libiomp5.so file containing folder/',Output_dir='path to deafult folder/')
+>>> sz.Set_paths(LigBuilder_path='path to LigBuilderV3.0/',libiomp5_file='path to libiomp5.so file containing folder/',Output_dir='path to default folder/')
 ```
 **Note:** to find the folder containing libiomp5.h file
 ```
@@ -118,7 +118,7 @@ $ find / -name libiomp5.so
 ```
 To submit the query protein file of interest in PDB format
 ```
->>> sz.input_structure(path='pre-set deafult Output folder/',pdb='path to pdbfile.pdb')
+>>> sz.input_structure(path='pre-set default Output folder/',pdb='path to pdbfile.pdb')
 Cavity will output 16 cavity file(s)
 ```
 The output shows the total number of cavities predicted (in this case, 16), which can be visualized by its integer identifier.
@@ -139,7 +139,7 @@ Users can either directly choose a cavity number for the ligand synthesis.
 ```
 Or the user can opt for cavity detection by submitting residue of interest in a TSV (Tab-separated) file.
 ```
->>> sz.cavity_detect(path='pre-set deafult Output folder/',res_list='Residue_list.tsv')
+>>> sz.cavity_detect(path='pre-set default Output folder/',res_list='Residue_list.tsv')
 ```
 Residue_list.tsv (The first column contains the Single-letter amino acid codes, and the second column their respective positions)
 ```
@@ -184,7 +184,7 @@ To segregate the synthetic compounds into binary classes based on their actual i
 ```
 To calculate the interaction (binding energy) of individual synthetic compounds with the target cavity (in which they are synthesized)
 ```
->>> au.synthetic_interaction(path='pre-set deafult Output folder/')
+>>> au.synthetic_interaction(path='pre-set default Output folder/')
 ```
 Additional arguments:
 1. method: Statistical test to use for binding energy cutoff estimation
@@ -205,7 +205,7 @@ Additional arguments:
 
 Example
 ```
->>> au.synthetic_interaction(path='pre-set deafult Output folder/',method='KS-test',p_val=0.05,plot='Density')
+>>> au.synthetic_interaction(path='pre-set default Output folder/',method='KS-test',p_val=0.05,plot='Density')
 ```
 
 To classify synthetic compounds into binary classes of HAB & LAB based on binding energy cutoff (Default: -7)
@@ -216,7 +216,7 @@ To classify synthetic compounds into binary classes of HAB & LAB based on bindin
 
 In case the user want to opt for decoys as a negative class against HABs
 ```
->>> au.synthetic_decoys(path='pre-set deafult Output folder/')
+>>> au.synthetic_decoys(path='pre-set default Output folder/')
 ```
 Additional arguments:
 
@@ -258,22 +258,22 @@ To pre-process the binary data (HAB & LAB) and test against four base models
 3. GCN: Graph Convolution Network
 4. GAT: Graph Attention Network
 ```
->>> ge.multi_model_test(path='pre-set deafult Output folder/')
+>>> ge.multi_model_test(path='pre-set default Output folder/')
 ```
 ##### Optional 
 Users can provide pre-compiled binary data for multi-model testing (limited to this function only)
 ```
 >>> data='/home/username/cmp.csv' #cmp.csv file containing "SMILES" & "Status" column with SMILES of compounds and 1/0 as class information respectively 
->>> ge.multi_model_test(path='pre-set deafult Output folder/',fi=data)
+>>> ge.multi_model_test(path='pre-set default Output folder/',fi=data)
 ```
 
 Save the base model scoring metrics as Pandas data frame
 ```
->>> matrices = ge.multi_model_test(path='pre-set deafult Output folder/')
+>>> matrices = ge.multi_model_test(path='pre-set default Output folder/')
 ```
 To select the best-performing model for the hyperparameter tuning (HPT) with K-Fold cross-validation 
 ```
->>> ge.MD_kfold(path='pre-set deafult Output folder/',mdl='GCN',k=5)
+>>> ge.MD_kfold(path='pre-set default Output folder/',mdl='GCN',k=5)
 ```
 Additional arguments:
 
@@ -312,7 +312,7 @@ Modifiable Hyperparameter list:
 ##### Optional
 Users can opt for hyperparameter tuning of any selected model without K-Fold cross-validation (Only for testing different hyperparameter grid range)
 ```
->>> ge.model_hpt(path='pre-set deafult Output folder/',mdl='GCN', params={dictionary}) #dictionary=['parameter name':[parameter grid]]
+>>> ge.model_hpt(path='pre-set default Output folder/',mdl='GCN', params={dictionary}) #dictionary=['parameter name':[parameter grid]]
 ```
 **Note:** The above function does not create a model for large-scale screening.
 
@@ -339,11 +339,11 @@ Prepare a list of canonical SMILES (OpenBabel generated) strings of the query co
 ```
 Run predictions on a pre-trained Graph-Neural Network model (Model selected for K-Fold cross on the last run)
 ```
->>> ge.MD_pred(path='pre-set deafult Output folder/',smi_list=smiles)
+>>> ge.MD_pred(path='pre-set default Output folder/',smi_list=smiles)
 ```
 Save the result as Pandas data frame
 ```
->>> result = ge.MD_pred(path='pre-set deafult Output folder/',smi_list=smiles)
+>>> result = ge.MD_pred(path='pre-set default Output folder/',smi_list=smiles)
 ```
 
 **Note:** Prediction for query compounds with a pre-trained model, for a given receptor cavity, in Gcoupler, takes less than a second for each SMILE
@@ -355,7 +355,7 @@ To opt for an optimal probability cutoff (instead of default 0.5) for a more pre
 ```
 Users can choose the model of interest to optimize the cutoff against
 ```
->>> ge.cutoff_optimize(path='pre-set deafult Output folder/',mdl='GCN',method='Optimisation method')
+>>> ge.cutoff_optimize(path='pre-set default Output folder/',mdl='GCN',method='Optimisation method')
 ``` 
 
 Options:
@@ -377,7 +377,7 @@ To evaluate and compare chemical compounds against the synthetic high-affinity b
 
 For detailed insights into the biological properties that the query compound may mimic
 ```
->>> cba.analyse(path = 'pre-set deafult Output folder/',Qdf = smiles_list)   #list of query SMILES
+>>> cba.analyse(path = 'pre-set default Output folder/',Qdf = smiles_list)   #list of query SMILES
 ```
 
 Users can also use the prediction output from the Generator module as input for segregation of molecules
@@ -385,12 +385,27 @@ Users can also use the prediction output from the Generator module as input for 
 >>> import Generator as ge
 >>> import ChemBioAtlas as cba
 >>> smiles_list =  ['ClCC=C', 'C=CCOC(=O)CC(C)C', ...]
->>> result = ge.MD_pred(path='pre-set deafult Output folder/',smi_list=smiles)
->>> cba.analyse(path = 'pre-set deafult Output folder/',Qdf = result)
+>>> result = ge.MD_pred(path='pre-set default Output folder/',smi_list=smiles)
+>>> cba.analyse(path = 'pre-set default Output folder/',Qdf = result)
 ```
+
+The module by default, considers compounds with a probability of 0.9 or above for the processing
+User can provide their own thresholds using
+```
+>>> result
+                                                 smiles    Probability 
+0          c1cc2c(cc1Cl)n1c(c(n2)NC2CCCCC2)nnc1C(F)(F)F       0.824532 
+1              c1ccc2c(c1)c(c(c(=O)o2)N)Nc1ccccc1C(=O)O       0.464561
+...                                                 ...            ...
+322                  c1cc(c2c(c1)[nH]c(n2)c1ccc(cc1)N)N       0.913462
+
+>>> cba.analyse(path = 'pre-set default Output folder/', Qdf = result, threshold=0.8)  
+```
+
+
 Biological properties under ChemBioAtlas
 
-| Main Class          | Abbreviation | Subclass                      | Abbreviation |
+| Main Properties     | Abbreviation | Subproperties                 | Abbreviation |
 |---------------------|--------------|-------------------------------|--------------|
 | **Chemistry**       | Chem         | 2D Fingerprints               | FP2D         |
 |                     |              | 3D Fingerprints               | FP3D         |
@@ -418,7 +433,44 @@ Biological properties under ChemBioAtlas
 |                     |              | Diseases & toxicology         | DisTox       |
 |                     |              | Drug-drug interactions        | DDI          |
 
-ChemBioAtlas by default considers 5
+ChemBioAtlas by default, analyses query molecules for the main properties
 
+Users can also provide their custom list of main and/or sub-properties for analysis by the module
+```
+>>> property_list =['Chem', 'Bnd', 'ThrpA']
+>>> cba.analyse(path = 'pre-set default Output folder/', Qdf = result, Property = property_list)
+```
+Users can choose to analyze all the properties (main+sub) in a single run
+```
+>>> cba.analyse(path = 'pre-set default Output folder/', Qdf = result, Property = 25)
+```
+
+The module by default, provides the top 15% of the compounds based on the property combination provided, along with a scaled heatmap of the rank score for each compound with respective properties.
+
+The user can change the threshold for top hits
+```
+>>> out_df = cba.analyse(path = 'pre-set default Output folder/', Qdf = result, top_hit = 20)   #for top 20%
+>>> out_df
+       QID                                              smiles 
+0     Hit1        c1cc2c(cc1Cl)n1c(c(n2)NC2CCCCC2)nnc1C(F)(F)F 
+1     Hit2                       c(c(c(=O)o2)N)Nc1ccccc1C(=O)O
+...    ...                                                 ...
+86   Hit52                  c1cc(c2c(c1)[nH]c(n2)c1ccc(cc1)N)N
+
+```
+
+The user can export the rank score matrix 
+```
+>>> out_df = cba.analyse(path = 'pre-set default Output folder/', Qdf = result, out_matrix=True)
+>>> out_df
+       QID        Chem         Bnd       ThrpA                                          smiles 
+0     Hit1    0.626817    0.896565   -0.564356    c1cc2c(cc1Cl)n1c(c(n2)NC2CCCCC2)nnc1C(F)(F)F 
+1     Hit2    0.735635    0.027846   -0.346736                   c(c(c(=O)o2)N)Nc1ccccc1C(=O)O
+...    ...         ...         ...         ...                                             ...
+52   Hit52   -0.178472    0.434677    0.246789              c1cc(c2c(c1)[nH]c(n2)c1ccc(cc1)N)N
+
+```
+
+**Note:** The module provides the union of the top hits for each property provided by the user 
 
 
