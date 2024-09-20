@@ -100,6 +100,7 @@ Gcoupler supports three distinct modules:<br/>
 1. Synthesizer
 2. Authenticator
 3. Generator
+4. ChemBioAtlas
 
 ### Synthesizer
 
@@ -363,4 +364,61 @@ Options:
 | mdl | GCN/GCM/AFP/GAT | GNN model of interest  |
 | method | 'G-mean' or 'YoudenJ' | Method to use for optimization |
 
-**Note:** It is recommended that users optimize the cutoff for the GNN model they have K-Fold validated or will be using for the same. 
+**Note:** It is recommended that users optimize the cutoff for the GNN model they have K-Fold validated or will be using for the same.
+
+
+
+### ChemBioAtlas
+
+To evaluate and compare chemical compounds against the synthetic high-affinity binders for further screening
+```
+>>> import ChemBioAtlas as cba
+```
+
+For detailed insights into the biological properties that the query compound may mimic
+```
+>>> cba.analyse(path = 'pre-set deafult Output folder/',Qdf = smiles_list)   #list of query SMILES
+```
+
+Users can also use the prediction output from the Generator module as input for segregation of molecules
+```
+>>> import Generator as ge
+>>> import ChemBioAtlas as cba
+>>> smiles_list =  ['ClCC=C', 'C=CCOC(=O)CC(C)C', ...]
+>>> result = ge.MD_pred(path='pre-set deafult Output folder/',smi_list=smiles)
+>>> cba.analyse(path = 'pre-set deafult Output folder/',Qdf = result)
+```
+Biological properties under ChemBioAtlas
+
+| Main Class          | Abbreviation | Subclass                      | Abbreviation |
+|---------------------|--------------|-------------------------------|--------------|
+| **Chemistry**       | Chem         | 2D Fingerprints               | FP2D         |
+|                     |              | 3D Fingerprints               | FP3D         |
+|                     |              | Scaffolds                     | Sfld         |
+|                     |              | Structural Keys               | StrKeys      |
+|                     |              | Physiochemistry               | PhysChem     |
+| **Targets**         | Tgt          | Mechanisms of Action          | MoA          |
+|                     |              | Metabolic genes               | MetaGns      |
+|                     |              | Crystals                      | Cry          |
+|                     |              | Binding                       | Bnd          |
+|                     |              | HTS bioassays                 | HTSBio       |
+| **Networks**        | Ntwk         | Small molecule roles          | SMRoles      |
+|                     |              | Small molecule pathways       | SMPaths      |
+|                     |              | Signaling pathways            | SigPaths     |
+|                     |              | Biological processes          | BioProc      |
+|                     |              | Interactome                   | Intome       |
+| **Cells**           | Cls          | Transcription                 | Trans        |
+|                     |              | Cancer cell lines             | CancCL       |
+|                     |              | Chemical genetics             | ChemGen      |
+|                     |              | Morphology                    | Morph        |
+|                     |              | Cell bioassays                | CellBio      |
+| **Clinics**         | Clncs        | Therapeutic areas             | ThrpA        |
+|                     |              | Indications                   | Indctns      |
+|                     |              | Side effects                  | SEff         |
+|                     |              | Diseases & toxicology         | DisTox       |
+|                     |              | Drug-drug interactions        | DDI          |
+
+ChemBioAtlas by default considers 5
+
+
+
