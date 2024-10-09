@@ -1,7 +1,7 @@
 # Interactome Prediction using Gcoupler
  <br>
 <div align="center">
-<img src="Images/Overview.png"></div>
+<img src="Images/Overview2.png"></div>
 <br>
 
 ### Introduction
