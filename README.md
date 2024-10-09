@@ -100,7 +100,7 @@ Gcoupler supports four distinct modules:<br/>
 1. Synthesizer
 2. Authenticator
 3. Generator
-4. ChemBioAtlas
+4. BioRanker
 
 ### Synthesizer
 
@@ -368,25 +368,25 @@ Options:
 
 
 
-### ChemBioAtlas
+### BioRanker
 
 To evaluate and compare chemical compounds against the synthetic high-affinity binders for further screening
 ```
->>> import ChemBioAtlas as cba
+>>> import BioRanker as br
 ```
 
 For detailed insights into the biological properties that the query compound may mimic
 ```
->>> cba.analyse(path = 'pre-set default Output folder/',Qdf = smiles_list)   #list of query SMILES
+>>> br.analyse(path = 'pre-set default Output folder/',Qdf = smiles_list)   #list of query SMILES
 ```
 
 Users can also use the prediction output from the Generator module as input for segregation of molecules
 ```
 >>> import Generator as ge
->>> import ChemBioAtlas as cba
+>>> import BioRanker as br
 >>> smiles_list =  ['ClCC=C', 'C=CCOC(=O)CC(C)C', ...]
 >>> result = ge.MD_pred(path='pre-set default Output folder/',smi_list=smiles)
->>> cba.analyse(path = 'pre-set default Output folder/',Qdf = result)
+>>> br.analyse(path = 'pre-set default Output folder/',Qdf = result)
 ```
 
 The module by default, considers compounds with a probability of 0.9 or above for the processing
@@ -399,11 +399,11 @@ User can provide their own thresholds using
 ...                                                 ...            ...
 322                  c1cc(c2c(c1)[nH]c(n2)c1ccc(cc1)N)N       0.913462
 
->>> cba.analyse(path = 'pre-set default Output folder/', Qdf = result, threshold=0.8)  
+>>> br.analyse(path = 'pre-set default Output folder/', Qdf = result, threshold=0.8)  
 ```
 
 
-Biological properties under ChemBioAtlas
+Biological properties under BioRanker
 
 | Main Properties     | Abbreviation | Subproperties                 | Abbreviation |
 |---------------------|--------------|-------------------------------|--------------|
@@ -433,23 +433,23 @@ Biological properties under ChemBioAtlas
 |                     |              | Diseases & toxicology         | DisTox       |
 |                     |              | Drug-drug interactions        | DDI          |
 
-ChemBioAtlas by default, analyses query molecules for the main properties
+BioRanker by default, analyses query molecules for the main properties
 
 Users can also provide their custom list of main and/or sub-properties for analysis by the module
 ```
 >>> property_list =['Chem', 'Bnd', 'ThrpA']
->>> cba.analyse(path = 'pre-set default Output folder/', Qdf = result, Property = property_list)
+>>> br.analyse(path = 'pre-set default Output folder/', Qdf = result, Property = property_list)
 ```
 Users can choose to analyze all the properties (main+sub) in a single run
 ```
->>> cba.analyse(path = 'pre-set default Output folder/', Qdf = result, Property = 25)
+>>> br.analyse(path = 'pre-set default Output folder/', Qdf = result, Property = 25)
 ```
 
 The module by default, provides the top 15% of the compounds based on the property combination provided, along with a scaled heatmap of the rank score for each compound with respective properties.
 
 The user can change the threshold for top hits
 ```
->>> out_df = cba.analyse(path = 'pre-set default Output folder/', Qdf = result, top_hit = 20)   #for top 20%
+>>> out_df = br.analyse(path = 'pre-set default Output folder/', Qdf = result, top_hit = 20)   #for top 20%
 >>> out_df
        QID                                              smiles 
 0     Hit1        c1cc2c(cc1Cl)n1c(c(n2)NC2CCCCC2)nnc1C(F)(F)F 
@@ -461,7 +461,7 @@ The user can change the threshold for top hits
 
 The user can export the rank score matrix 
 ```
->>> out_df = cba.analyse(path = 'pre-set default Output folder/', Qdf = result, out_matrix=True)
+>>> out_df = br.analyse(path = 'pre-set default Output folder/', Qdf = result, out_matrix=True)
 >>> out_df
        QID        Chem         Bnd       ThrpA                                          smiles 
 0     Hit1    0.626817    0.896565   -0.564356    c1cc2c(cc1Cl)n1c(c(n2)NC2CCCCC2)nnc1C(F)(F)F 
