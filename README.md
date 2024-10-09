@@ -96,7 +96,7 @@ $ pip install -i https://test.pypi.org/simple/ Gcoupler
 **The package installation takes a few seconds to finish.**
 
 ## Pipeline
-Gcoupler supports three distinct modules:<br/>
+Gcoupler supports four distinct modules:<br/>
 1. Synthesizer
 2. Authenticator
 3. Generator
