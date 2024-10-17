@@ -95,7 +95,7 @@ $ pip install -i https://test.pypi.org/simple/ Gcoupler
 ```
 **The package installation takes a few seconds to finish.**
 
-## Pipeline
+## **Gcoupler Pipeline**
 Gcoupler supports four distinct modules:<br/>
 1. Synthesizer
 2. Authenticator
@@ -337,7 +337,7 @@ Prepare a list of canonical SMILES (OpenBabel generated) strings of the query co
 ```
 >>> smiles =  ['ClCC=C', 'C=CCOC(=O)CC(C)C', ...]
 ```
-Run predictions on a pre-trained Graph-Neural Network model (Model selected for K-Fold cross on the last run)
+Run predictions on the pre-trained Graph-Neural Network model (Model selected for K-Fold cross on the last run)
 ```
 >>> ge.MD_pred(path='pre-set default Output folder/',smi_list=smiles)
 ```
@@ -346,26 +346,7 @@ Save the result as Pandas data frame
 >>> result = ge.MD_pred(path='pre-set default Output folder/',smi_list=smiles)
 ```
 
-**Note:** Prediction for query compounds with a pre-trained model, for a given receptor cavity, in Gcoupler, takes less than a second for each SMILE
-
-### Cutoff Optimization
-To opt for an optimal probability cutoff (instead of default 0.5) for a more precise classification of predicted query compounds
-```
->>> import Generator as ge
-```
-Users can choose the model of interest to optimize the cutoff against
-```
->>> ge.cutoff_optimize(path='pre-set default Output folder/',mdl='GCN',method='Optimisation method')
-``` 
-
-Options:
-| Arguments | Option | Description |
-| -------- | -------- | -------- |
-| mdl | GCN/GCM/AFP/GAT | GNN model of interest  |
-| method | 'G-mean' or 'YoudenJ' | Method to use for optimization |
-
-**Note:** It is recommended that users optimize the cutoff for the GNN model they have K-Fold validated or will be using for the same.
-
+**Note:** Prediction for query compounds with a pre-trained model for a given receptor cavity in Gcoupler takes less than a second for each SMILE
 
 
 ### BioRanker
@@ -384,7 +365,7 @@ Users can also use the prediction output from the Generator module as input for 
 ```
 >>> import Generator as ge
 >>> import BioRanker as br
->>> smiles_list =  ['ClCC=C', 'C=CCOC(=O)CC(C)C', ...]
+>>> smiles_list =  ['c1cc2c(cc1Cl)n1c(c(n2)NC2CCCCC2)nnc1C(F)(F)F', 'c1ccc2c(c1)c(c(c(=O)o2)N)Nc1ccccc1C(=O)O', ...]
 >>> result = ge.MD_pred(path='pre-set default Output folder/',smi_list=smiles)
 >>> br.analyse(path = 'pre-set default Output folder/',Qdf = result)
 ```
@@ -402,8 +383,25 @@ User can provide their own thresholds using
 >>> br.analyse(path = 'pre-set default Output folder/', Qdf = result, threshold=0.8)  
 ```
 
+#### Threshold Optimization
+To opt for an optimal probability cutoff (instead of default) for a more precise selection of query compounds
+```
+>>> import BioRanker as br
+```
+Users can choose the model of interest to optimize the cutoff against
+```
+>>> br.threshold_optimize(path='pre-set default Output folder/',mdl='GCN',method='Optimisation method')
+``` 
 
-Biological properties under BioRanker
+Options:
+| Arguments | Option | Description |
+| -------- | -------- | -------- |
+| mdl | GCN/GCM/AFP/GAT | GNN model used for prediction |
+| method | 'G-mean' or 'YoudenJ' | Method to use for optimization |
+
+**Note:** It is recommended that users optimize the cutoff for the GNN model used for the prediction.
+
+#### Biological properties under BioRanker
 
 | Main Properties     | Abbreviation | Subproperties                 | Abbreviation |
 |---------------------|--------------|-------------------------------|--------------|
@@ -440,11 +438,12 @@ Users can also provide their custom list of main and/or sub-properties for analy
 >>> property_list =['Chem', 'Bnd', 'ThrpA']
 >>> br.analyse(path = 'pre-set default Output folder/', Qdf = result, Property = property_list)
 ```
-Users can choose to analyze all the properties (main+sub) in a single run
+Users can choose to analyze all the sub-properties in a single run
 ```
 >>> br.analyse(path = 'pre-set default Output folder/', Qdf = result, Property = 25)
 ```
 
+##### Optional
 The module by default, provides the top 15% of the compounds based on the property combination provided, along with a scaled heatmap of the rank score for each compound with respective properties.
 
 The user can change the threshold for top hits
@@ -470,7 +469,3 @@ The user can export the rank score matrix
 52   Hit52   -0.178472    0.434677    0.246789              c1cc(c2c(c1)[nH]c(n2)c1ccc(cc1)N)N
 
 ```
-
-**Note:** The module provides the union of the top hits for each property provided by the user 
-
-
