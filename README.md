@@ -91,7 +91,7 @@ $ sudo make install
 
 **Installation of Gcoupler**
 ```
-$ pip install -i https://test.pypi.org/simple/ Gcoupler
+$ pip install Gcoupler
 ```
 **The package installation takes a few seconds to finish.**
 
