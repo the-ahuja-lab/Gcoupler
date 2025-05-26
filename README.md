@@ -91,7 +91,7 @@ $ sudo make install
 
 **Installation of Gcoupler**
 ```
-$ pip install Gcoupler
+$ pip install gcoupler
 ```
 **The package installation takes a few seconds to finish.**
 
