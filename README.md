@@ -4,10 +4,58 @@
 <img src="Images/Overview2.png"></div>
 <br>
 
-### Introduction
+# 🧬 Gcoupler
 
-Gcoupler leverages an integrative approach combining _de novo_ ligand design, statistical methods, and Graph Neural Networks for rational prediction of high-affinity ligands. Gcoupler offers an efficient and comparatively faster route to explore endogenous allosteric sites of GPCRs, including the GPCR-Gα interface. <br/><br/>
+Gcoupler is an **AI-driven generalized computational toolkit** that leverages an integrative framework combining:
 
+- **Structure-based de novo ligand design**  
+- **Statistical validation methods**  
+- **Graph Neural Networks (GNNs)**  
+- **Bioactivity-based ligand prioritization**
+
+to enable **rational prediction of high-affinity ligands**.
+
+Gcoupler is designed as an **end-to-end pipeline** for cavity-dependent ligand discovery, integrating structural biology, machine learning, and cheminformatics into a unified and user-friendly workflow.
+
+---
+## 🔬 Methodological Framework
+
+Gcoupler follows a **modular architecture** composed of four interconnected components:
+
+### 1. Synthesizer
+- Identifies protein cavities from PDB structures  
+- Performs cavity-dependent *de novo* ligand synthesis using LigBuilder  
+
+### 2. Authenticator
+- Computes binding energies using structure-based virtual screening  
+- Applies statistically grounded methods (KS-test, AD-test, ES-test)  
+- Classifies ligands into:
+  - **HAB (High-Affinity Binders)**  
+  - **LAB (Low-Affinity Binders)**  
+
+### 3. Generator
+- Trains Graph Neural Network models (GCM, GCN, AFP, GAT)  
+- Performs hyperparameter tuning and k-fold cross-validation  
+- Enables large-scale ligand screening  
+
+### 4. BioRanker
+- Prioritizes ligands using:
+  - Bioactivity embeddings  
+  - Cosine similarity  
+  - PageRank-based ranking  
+- Supports multi-dimensional biological evaluation  
+
+---
+## ⚙️ Key Features
+
+- Cavity-dependent ligand generation guided by **protein topology and pharmacophores**  
+- Integration of **structure-based and learning-based approaches**  
+- Built-in **statistical rigor for binding threshold estimation**  
+- Support for **multi-model GNN benchmarking and selection**  
+- Scalable pipeline for **large-scale screening and prioritization**  
+- Flexible input support (PDB structures, residues, SMILES)  
+
+---
 
 ## How to use Gcoupler?
 
