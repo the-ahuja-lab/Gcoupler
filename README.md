@@ -22,7 +22,6 @@ Gcoupler is designed as an **end-to-end pipeline** for cavity-dependent ligand d
 **Deep Learning Reveals Endogenous Sterols as Allosteric Modulators of the GPCR-Gα Interface**  
 [eLife Reviewed Preprint (DOI: 10.7554/eLife.106397)](https://elifesciences.org/reviewed-preprints/106397)
 
----
 
 ---
 ## 🔬 Methodological Framework
