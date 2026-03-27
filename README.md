@@ -1,4 +1,4 @@
-# Interactome Prediction using Gcoupler
+# Gcoupler
  <br>
 <div align="center">
 <img src="Images/Overview2.png"></div>
@@ -16,6 +16,13 @@ Gcoupler is an **AI-driven generalized computational toolkit** that leverages an
 to enable **rational prediction of high-affinity ligands**.
 
 Gcoupler is designed as an **end-to-end pipeline** for cavity-dependent ligand discovery, integrating structural biology, machine learning, and cheminformatics into a unified and user-friendly workflow.
+
+## 📖 Based on the Published Work
+
+**Deep Learning Reveals Endogenous Sterols as Allosteric Modulators of the GPCR-Gα Interface**  
+[eLife Reviewed Preprint (DOI: 10.7554/eLife.106397)](https://elifesciences.org/reviewed-preprints/106397)
+
+---
 
 ---
 ## 🔬 Methodological Framework
